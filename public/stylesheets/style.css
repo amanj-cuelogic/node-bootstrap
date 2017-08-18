@@ -1,0 +1,33 @@
+@media (min-width: 992px) {
+  .content-wrapper {
+    min-height: 595px; 
+  } 
+}
+
+.search-field-form{
+  padding-top: 35%;
+}
+
+.input-border{
+  border: 1px #5fb7f4 solid
+}
+
+.listing-container{
+  border: 1px #868e96 solid
+}
+
+.list-image{
+  border-right: 1px #868e96 solid
+}
+.list-leads{
+  border-right: 1px #868e96 solid;
+  border-left: 1px #868e96 solid;
+}
+
+.leads-container{
+  border: 1px #868e96 solid
+}
+
+.lead-header{
+  border-bottom: 1px #868e96 solid
+}

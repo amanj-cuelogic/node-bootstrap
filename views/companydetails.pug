@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    div(class="row m-sm-4 listing-container")
+            div(class="col-lg-2 list-image")
+                image(src="images/cue-logo.jpg")
+            div(class="col-lg-10 py-2 list-details")
+                h4 Cuelogic
+                small At Cuelogic, we develop software for leading edge startups across the globe as well as with Fortune 500 enterprises looking to compete with unicorns.
+    div(class="row m-sm-4 leads-container")
+        div(class="col lead-header")
+            medium Leads
+        div(class="w-100")        
+        div(class="col")
+            ul(class="nav nav-tabs" role="tablist")
+                li(class="nav-item")
+                    a(class="nav-link active" data-toggle="tab" href="#qualified" role="tab") Qualified
+                li(class="nav-item")
+                    a(class="nav-link" data-toggle="tab" href="#warm" role="tab") Warm
+                li(class="nav-item")
+                    a(class="nav-link" data-toggle="tab" href="#cold" role="tab") Cold
+            div(class="tab-content")
+                div(class="tab-pane active" id="qualified" role="tabpanel") Qualified Leads
+                div(class="tab-pane" id="warm" role="tabpanel") Warm Leads
+                div(class="tab-pane" id="cold" role="tabpanel") Cold Leads
