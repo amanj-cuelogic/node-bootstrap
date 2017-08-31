@@ -6,21 +6,19 @@ block content
             div()
             form(class="form-inline" action="search" method="GET")
                 div(class="form-group mx-sm-3")
-                    input(type="text", name="q", class="form-control form-control-lg input-border" placeholder="query")
+                    input(type="text", name="q", class="form-control form-control-lg input-border" placeholder="query" value=query )
                 div(class="form-group mx-sm-3")
-                    input(type="text", name="location", class="form-control form-control-lg input-border", placeholder="Location")
+                    input(type="text", name="location", class="form-control form-control-lg input-border", placeholder="Location" value=location)
                 div(class="form-group mx-sm-3")
-                    input(type="text", name="sector", class="form-control form-control-lg input-border", placeholder="Sector")
+                    input(type="text", name="sector", class="form-control form-control-lg input-border", placeholder="Sector" value=sector)
                 div(class="form-group mx-sm-3")
                     button(type="submit", class="btn btn-primary btn-lg") Search
     div(class="row m-sm-4")
-        each val in [1,2,3,4,5,6]
+        each val in result
             div(class="row my-3 listing-container")
-                div(class="col-lg-2 list-image")
-                    image(src="images/cue-logo.jpg")
-                div(class="col-lg-6 py-2 list-details")
-                    h4 Cuelogic
-                    small At Cuelogic, we develop software for leading edge startups across the globe as well as with Fortune 500 enterprises looking to compete with unicorns.
+                div(class="col-lg-8 py-2 list-details")
+                    h4 #{val["_source"].name}
+                    small #{val["_source"].short_description}
                 div(class="col-lg-2 list-leads")
                     medium Leads
                     br

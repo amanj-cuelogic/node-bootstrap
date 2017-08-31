@@ -5,8 +5,8 @@ block content
             div(class="col-lg-2 list-image")
                 image(src="images/cue-logo.jpg")
             div(class="col-lg-10 py-2 list-details")
-                h4 Cuelogic
-                small At Cuelogic, we develop software for leading edge startups across the globe as well as with Fortune 500 enterprises looking to compete with unicorns.
+                h4 !{company[0].name}
+                small !{company[0].short_description}
     div(class="row m-sm-4 leads-container")
         div(class="col lead-header")
             medium Leads
@@ -23,3 +23,26 @@ block content
                 div(class="tab-pane active" id="qualified" role="tabpanel") Qualified Leads
                 div(class="tab-pane" id="warm" role="tabpanel") Warm Leads
                 div(class="tab-pane" id="cold" role="tabpanel") Cold Leads
+    div(class="row m-sm-4 leads-container")
+        div(class="col lead-header")
+            medium Locations
+        div(class="w-100")        
+            div(class="col-6 col-border")
+                br
+                each info in company
+                    ul()
+                        li(class="list-unstyled") #{info.address.street} 
+                        li(class="list-unstyled") #{info.address.city} - #{info.address.postal_code}
+                        li(class="list-unstyled") #{info.address.country} 
+            div(class="col-6")
+    div(class="row m-sm-4 leads-container")
+        div(class="col lead-header")
+            medium Other Information
+        div(class="w-100")        
+            div(class="col-6 col-border")
+                br
+                ul()
+                    each val, key in company[0].other_info
+                        li(class="list-unstyled") #{key} : #{val}
+            div(class="col-6")
+        
