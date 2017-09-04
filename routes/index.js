@@ -1,6 +1,7 @@
 var express = require('express');
 var cassandra = require('cassandra-driver')
 var elasticsearch = require("elasticsearch")
+var _ = require('lodash')
 var client = new cassandra.Client({ contactPoints: ['localhost'], keyspace: 'cuedatademo' })
 
 var router = express.Router();
@@ -52,12 +53,16 @@ router.get('/company/:name/profile', function (req, res, next) {
 
   var params = [];
   params.push(req.params.name);
-  var query = 'SELECT * FROM company WHERE name = ?';
+  var query = 'SELECT * FROM company WHERE name = ? LIMIT 1';
   client.execute(query, params, { prepare: true })
     .then(result => {
-      res.render('companydetails', { title: "Company Profile", company: result.rows })
+      var leads = _.groupBy(result.rows[0].company_leads, (lead)=> lead.type)
+      res.render('companydetails', { title: "Company Profile", company: result.rows[0], leads })
     })
-
+    .catch((error)=>{
+      console.log(error)
+    })
+  //  res.render('companydetails', { title: "Company Profile"})
 })
 
 
