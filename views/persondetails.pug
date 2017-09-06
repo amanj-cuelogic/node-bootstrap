@@ -5,8 +5,25 @@ block content
             div(class="col-lg-2 list-image")
                 image(src="images/cue-logo.jpg")
             div(class="col-lg-10 py-2 list-details")
-                h4 #{company.name}
-                small !{company.description}
+                h4 #{person.name}
+                medium #{person.designation}
+                br
+                medium #{person.company}
+    div(class="row m-sm-4 leads-container")
+            div(class="col lead-header")
+                medium Previous Companies
+            div(class="w-100")        
+            div(class="col p-4")
+                each val,key in person.prev_companies
+                    div(class="row my-3 listing-container")
+                        div(class="col-lg-10 py-2 list-details")
+                            h4 #{val.name}
+                            medium Role : #{val.role} 
+                            br
+                            small #{val.description}
+                        div(class="col-lg-2 p-4 list-moreinfo")
+                            a(href="#")
+                                button(type="button", class="btn btn-primary btn") More Info
     div(class="row m-sm-4 leads-container")
         div(class="col lead-header")
             medium Leads
@@ -51,43 +68,13 @@ block content
                                 a(href=lead["other_info"]["source"] target="_blank")
                                     button(type="button", class="btn btn-primary btn-sm") View Source
     div(class="row m-sm-4 leads-container")
-            div(class="col lead-header")
-                medium Employees
-            div(class="w-100")        
-            div(class="col py-4")
-                each employee, id in company.employees
-                    div(class="row")
-                        div(class="col-10")
-                            medium #{employee.name} 
-                            br
-                            medium #{employee.designation}
-                        div(class="col-2")
-                            a(href="/person/"+id+"/profile")
-                                button(type="button", class="btn btn-primary btn-sm") View Profile
-    div(class="row m-sm-4 leads-container")
-        div(class="col lead-header")
-            medium Locations
-        div(class="w-100")        
-            div(class="col-6 col-border")
-                br
-                each address in company.address
-                    ul()
-                        li(class="list-unstyled") #{address.street},
-                        if address.street2
-                            li(class="list-unstyled") #{address.street2}, 
-                        li(class="list-unstyled") #{address.city} - #{address.postalcode}
-                        li(class="list-unstyled") #{address.country}
-                        each phone in address.phone
-                            li(class="list-unstyled") #{phone}
-            div(class="col-6")
-    div(class="row m-sm-4 leads-container")
         div(class="col lead-header")
             medium Other Information
         div(class="w-100")        
             div(class="col-6 col-border")
                 br
                 ul()
-                    each val, key in company.other_info
+                    each val, key in person.other_info
                         li(class="list-unstyled") #{key} : #{val}
             div(class="col-6")
         

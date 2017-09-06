@@ -65,5 +65,21 @@ router.get('/company/:name/profile', function (req, res, next) {
   //  res.render('companydetails', { title: "Company Profile"})
 })
 
+router.get('/person/:id/profile', function (req, res, next) {
+
+  var params = [];
+  params.push(req.params.id);
+  var query = 'SELECT * FROM person WHERE id = ? LIMIT 1';
+  client.execute(query, params, { prepare: true })
+    .then(result => {
+      var leads = _.groupBy(result.rows[0].leads, (lead)=> lead.type)
+      res.render('persondetails', { title: "Person Profile", person: result.rows[0], leads })
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+    //res.render('persondetails', { title: "Company Profile"})
+})
+
 
 module.exports = router;
